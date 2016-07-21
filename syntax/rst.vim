@@ -9,8 +9,6 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
-call riv#load_opt()
-
 syn match   rstTodo         '\v(<|:)%(FIXME|TODO|XXX|NOTE)%(:|\_s@=)' contained
 
 syn case ignore
