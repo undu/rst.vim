@@ -72,7 +72,7 @@ syn match   rstExplicitMarkupDot       '^\s*\.\.\_s' contained
 
 " NOTE: the rst recongnize unicode_char_ target and refernce
 " So use [^[:punct:][:space:]] here.
-if g:riv_unicode_ref_name == 1
+if 0 == 1
     let s:ReferenceName = '[^[:cntrl:][:punct:][:space:]]\+\%([_.-][^[:space:][:punct:][:cntrl:]]\+\)*'
 " XXX
 " unicode mathing seems a bit slow

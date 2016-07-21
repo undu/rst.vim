@@ -8,8 +8,6 @@
 let s:cpo_save = &cpo
 set cpo-=C
 
-let s:s = g:_riv_s
-
 syn sync match rstHighlight groupthere NONE #^\_s\@!#
 
 " Link "{{{1
@@ -45,7 +43,7 @@ syn cluster rstCommentGroup contains=rstCommentTitle,rstTodo
 " File: "{{{1
 syn cluster rstCruft add=rstStandaloneHyperlink
 syn cluster rstCommentGroup add=@rstLinkGroup
-if g:riv_file_ext_link_hl == 1
+if 0 == 1
     exe 'syn match rstFileExtLink &'.s:s.rstFileExtLink.'&'
     syn cluster rstCruft add=rstFileExtLink
 endif
@@ -66,7 +64,7 @@ exe 'syn cluster rstDirectives add=rstDirective_code'
 
 " TODO Can we use dynamical loading? 
 " parse the code name of code directives dynamicly and load the syntax file?
-for code in g:_riv_t.highlight_code
+for code in split("python,c,cpp,javascript,vim,sh,console|sh,bash|sh,php,", ',')
     " for performance , use $VIMRUNTIME and first in &rtp
     let path = join([$VIMRUNTIME, split(&rtp,',')[0]],',')
 
@@ -113,18 +111,6 @@ if !exists("g:_riv_incluing_python_rst") && has("spell")
     " docstrings
     syn spell toplevel
 endif
-
-" Todo: "{{{1
-syn cluster rstTodoGroup contains=rstTodoItem,rstTodoPrior,rstTodoTmBgn,rstTodoTmsEnd
-
-exe 'syn match rstTodoRegion `' . s:s.rstTodoRegion .'` transparent contains=@rstTodoGroup'
-
-exe 'syn match rstTodoItem `'.s:s.rstTodoItem.'` contained nextgroup=rstTodoPrior'
-exe 'syn match rstTodoPrior `'.s:s.rstTodoPrior.'` contained nextgroup=rstTodoTmBgn'
-exe 'syn match rstTodoTmBgn `'.s:s.rstTodoTmBgn.'` contained nextgroup=rstTodoTmEnd'
-exe 'syn match rstTodoTmEnd `'.s:s.rstTodoTmEnd.'` contained'
-
-exe 'syn match rstDoneRegion `' . s:s.rstDoneRegion .'`'
 
 " Highlights: "{{{1
 if &background == 'light'
